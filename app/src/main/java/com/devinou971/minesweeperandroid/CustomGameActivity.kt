@@ -34,11 +34,13 @@ class CustomGameActivity : AppCompatActivity() {
         val nbCols = colsSlider.value.toInt()
         val nbRows = rowsSlider.value.toInt()
         val nbBombs = (nbRows * nbCols * (bombsSlider.value/100)).toInt()
+        val cellSize = if(colsSlider.valueTo / nbCols <= rowsSlider.valueTo / nbRows ) (colsSlider.valueTo / nbCols).toInt() else  (rowsSlider.valueTo / nbRows).toInt()
 
         val intent = Intent(this, GameActivity::class.java).apply {
             putExtra(NB_BOMBS, nbBombs)
             putExtra(NB_COLS, nbCols)
             putExtra(NB_ROWS, nbRows)
+            putExtra(CELL_SIZE, cellSize)
         }
         startActivity(intent)
     }

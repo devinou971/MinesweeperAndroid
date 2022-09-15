@@ -26,29 +26,14 @@ class MenuActivity : AppCompatActivity() {
         findViewById<Button>(R.id.customLevelButon).setOnClickListener {
             gotToGame(it)
         }
-
-        /*
-        In Order to do an action while another thing is going on : We can use threads Like this :
-
-        val thread = Thread(Runnable{
-            fun run(){
-                // do something here
-                SystemClock.sleep(500)
-            }
-        })
-        thread.start()
-
-         */
     }
 
     fun gotToGame(view: View) {
-        // TO get to the game, we need to create the board. and the Board can be created with
-        // I
         val availableHeight = (window.decorView.height * 0.80).toInt()
         val availableWidth = window.decorView.width
-
-        val nbRows = availableHeight / GameActivity.DEFAULT_CELL_HEIGHT
-        val nbCols = availableWidth / GameActivity.DEFAULT_CELL_WIDTH
+        val nbCols = 10
+        val cellSize = availableWidth / nbCols
+        val nbRows = availableHeight / cellSize
         when(view.id){
             R.id.easyLevelButton -> {
                 val nbBombs = (nbRows * nbCols * 0.15).toInt()
@@ -56,6 +41,7 @@ class MenuActivity : AppCompatActivity() {
                     putExtra(NB_BOMBS, nbBombs)
                     putExtra(NB_COLS, nbCols)
                     putExtra(NB_ROWS, nbRows)
+                    putExtra(CELL_SIZE, cellSize)
                 }
                 startActivity(intent)
             }
@@ -65,6 +51,7 @@ class MenuActivity : AppCompatActivity() {
                     putExtra(NB_BOMBS, nbBombs)
                     putExtra(NB_COLS, nbCols)
                     putExtra(NB_ROWS, nbRows)
+                    putExtra(CELL_SIZE, cellSize)
                 }
                 startActivity(intent)
             }
@@ -74,6 +61,7 @@ class MenuActivity : AppCompatActivity() {
                     putExtra(NB_BOMBS, nbBombs)
                     putExtra(NB_COLS, nbCols)
                     putExtra(NB_ROWS, nbRows)
+                    putExtra(CELL_SIZE, cellSize)
                 }
                 startActivity(intent)
             }
