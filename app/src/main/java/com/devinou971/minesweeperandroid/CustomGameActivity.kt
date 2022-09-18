@@ -34,7 +34,11 @@ class CustomGameActivity : AppCompatActivity() {
         val nbCols = colsSlider.value.toInt()
         val nbRows = rowsSlider.value.toInt()
         val nbBombs = (nbRows * nbCols * (bombsSlider.value/100)).toInt()
-        val cellSize = if(colsSlider.valueTo / nbCols <= rowsSlider.valueTo / nbRows ) (colsSlider.valueTo / nbCols).toInt() else  (rowsSlider.valueTo / nbRows).toInt()
+
+        val availableHeight = (window.decorView.height * 0.80).toInt()
+        val availableWidth = window.decorView.width
+
+        val cellSize = if(availableWidth / nbCols <= availableHeight / nbRows ) availableWidth / nbCols else  availableHeight / nbRows
 
         val intent = Intent(this, GameActivity::class.java).apply {
             putExtra(NB_BOMBS, nbBombs)

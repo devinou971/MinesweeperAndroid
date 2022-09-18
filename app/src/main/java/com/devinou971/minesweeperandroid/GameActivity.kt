@@ -129,7 +129,14 @@ class GameActivity : AppCompatActivity() {
         }
         labelNbFlagsRemaining.text = gameBoard.nbFlags.toString()
         findViewById<Button>(R.id.anotherChance).setOnClickListener { revive() }
+
+        gameView.viewTreeObserver.addOnWindowFocusChangeListener {
+            drawGrid()
+        }
+
     }
+
+
 
     private fun gridClickedEvent(x: Float, y: Float){
         if(mode == Mode.REVEAL){

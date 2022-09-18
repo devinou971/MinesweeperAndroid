@@ -14,11 +14,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
     }
 
     fun goToMenu(view:View) {
-        // In order to change Activity, We need to do this :
         val intent = Intent(this, MenuActivity::class.java).apply {  }
         startActivity(intent)
     }
