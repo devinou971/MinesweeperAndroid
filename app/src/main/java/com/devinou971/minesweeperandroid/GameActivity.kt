@@ -6,6 +6,7 @@ import android.graphics.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
+import android.view.SurfaceView
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.Button
@@ -15,10 +16,8 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.graphics.scale
 import com.devinou971.minesweeperandroid.classes.MinesweeperBoard
-import com.devinou971.minesweeperandroid.customViews.GameView
 
 class GameActivity : AppCompatActivity() {
-    // ------------- ADDED -------------
     private lateinit var bombIcon : Bitmap
     private lateinit var flagIcon : Bitmap
     private lateinit var tileIcon : Bitmap
@@ -55,7 +54,7 @@ class GameActivity : AppCompatActivity() {
     // --------------------------
 
     private lateinit var gameBoard : MinesweeperBoard
-    private lateinit var gameView : GameView
+    private lateinit var gameView : SurfaceView
     private lateinit var labelNbFlagsRemaining : TextView
 
     private lateinit var playerWin : ConstraintLayout
@@ -66,6 +65,7 @@ class GameActivity : AppCompatActivity() {
     private var nbCols = 0
     private var cellSize : Int = 0
 
+    // --------- DO WE WANT TO FLAG A SLOT OR REVEAL A SLOT ? ---------
     enum class Mode {
         REVEAL, FLAG
     }
@@ -130,13 +130,12 @@ class GameActivity : AppCompatActivity() {
         labelNbFlagsRemaining.text = gameBoard.nbFlags.toString()
         findViewById<Button>(R.id.anotherChance).setOnClickListener { revive() }
 
+        // --------- ONCE THE VIEW IS AVAILABLE, WE DRAW THE GRID ON IT ---------
         gameView.viewTreeObserver.addOnWindowFocusChangeListener {
             drawGrid()
         }
 
     }
-
-
 
     private fun gridClickedEvent(x: Float, y: Float){
         if(mode == Mode.REVEAL){
@@ -185,9 +184,7 @@ class GameActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    // ------------- ADDED -------------
-
-    fun reveal(x : Float, y : Float){
+    private fun reveal(x : Float, y : Float){
         val trueX = (x / cellSize).toInt()
         val trueY = (y / cellSize).toInt()
 
@@ -197,7 +194,7 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
-    fun flag(x : Float, y: Float){
+    private fun flag(x : Float, y: Float){
         val trueX = (x / cellSize).toInt()
         val trueY = (y / cellSize).toInt()
 
@@ -207,7 +204,7 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
-    fun drawGrid(){
+    private fun drawGrid(){
         val can = gameView.holder.lockCanvas()
         can.drawColor(this.applicationContext.getColor(R.color.bgColor), PorterDuff.Mode.CLEAR)
 
