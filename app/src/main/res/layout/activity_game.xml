@@ -17,11 +17,13 @@
             android:id="@+id/nbFlagsRemaining"
             android:layout_width="150dp"
             android:layout_height="match_parent"
+            android:fontFamily="@font/alarm_clock"
             android:text="Number Here"
             android:textAlignment="center"
+            android:textSize="34sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/reloadBoard"

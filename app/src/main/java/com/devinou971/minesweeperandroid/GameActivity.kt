@@ -115,16 +115,16 @@ class GameActivity : AppCompatActivity() {
         findViewById<Button>(R.id.returnMenuButton).setOnClickListener { goToMenu() }
 
         // --------- ONCLICK EVENT TO SWITCH BETWEEN FLAG AND REVEAL MODE ---------
-        modeSwitchButton.setBackgroundResource(R.drawable.flagicon)
+        modeSwitchButton.setBackgroundResource(R.drawable.pickaxeicon)
 
         modeSwitchButton.setOnClickListener {
             if(mode == Mode.REVEAL){
                 mode = Mode.FLAG
-                modeSwitchButton.setBackgroundResource(R.drawable.bombicon)
+                modeSwitchButton.setBackgroundResource(R.drawable.flagicon)
             }
             else {
                 mode = Mode.REVEAL
-                modeSwitchButton.setBackgroundResource(R.drawable.flagicon)
+                modeSwitchButton.setBackgroundResource(R.drawable.pickaxeicon)
             }
         }
         labelNbFlagsRemaining.text = gameBoard.nbFlags.toString()
@@ -134,7 +134,6 @@ class GameActivity : AppCompatActivity() {
         gameView.viewTreeObserver.addOnWindowFocusChangeListener {
             drawGrid()
         }
-
     }
 
     private fun gridClickedEvent(x: Float, y: Float){
@@ -237,5 +236,4 @@ class GameActivity : AppCompatActivity() {
         }
         gameView.holder.unlockCanvasAndPost(can)
     }
-
 }

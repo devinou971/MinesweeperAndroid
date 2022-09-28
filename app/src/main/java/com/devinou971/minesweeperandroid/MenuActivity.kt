@@ -28,7 +28,7 @@ class MenuActivity : AppCompatActivity() {
         }
     }
 
-    fun gotToGame(view: View) {
+    private fun gotToGame(view: View) {
         val availableHeight = (window.decorView.height * 0.80).toInt()
         val availableWidth = window.decorView.width
         val nbCols = 10
