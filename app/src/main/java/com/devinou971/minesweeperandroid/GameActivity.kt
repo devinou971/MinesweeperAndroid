@@ -65,6 +65,8 @@ class GameActivity : AppCompatActivity() {
     private var nbCols = 0
     private var cellSize : Int = 0
 
+    private var quit = false
+
     // --------- DO WE WANT TO FLAG A SLOT OR REVEAL A SLOT ? ---------
     enum class Mode {
         REVEAL, FLAG
@@ -113,6 +115,7 @@ class GameActivity : AppCompatActivity() {
         findViewById<Button>(R.id.replayButton2).setOnClickListener{replay()}
 
         findViewById<Button>(R.id.returnMenuButton).setOnClickListener { goToMenu() }
+        findViewById<Button>(R.id.returnMenuButton2).setOnClickListener { goToMenu() }
 
         // --------- ONCLICK EVENT TO SWITCH BETWEEN FLAG AND REVEAL MODE ---------
         modeSwitchButton.setBackgroundResource(R.drawable.pickaxeicon)
@@ -132,7 +135,8 @@ class GameActivity : AppCompatActivity() {
 
         // --------- ONCE THE VIEW IS AVAILABLE, WE DRAW THE GRID ON IT ---------
         gameView.viewTreeObserver.addOnWindowFocusChangeListener {
-            drawGrid()
+            if(!quit)
+                drawGrid()
         }
     }
 
@@ -179,6 +183,7 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun goToMenu(){
+        quit = true
         val intent = Intent(this, MenuActivity::class.java)
         startActivity(intent)
     }

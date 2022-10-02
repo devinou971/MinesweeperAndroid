@@ -17,5 +17,5 @@
     <string name="replay">Replay</string>
     <string name="you_won_string">You Won !</string>
     <string name="gameover">Gameover</string>
-    <string name="another_chance">Want another chance ?</string>
+    <string name="another_chance">+ 1 Life</string>
 </resources>

@@ -52,6 +52,7 @@
         android:id="@+id/gameView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+
         android:layout_weight="1" />
 
     <!-- Player Win popup -->
@@ -100,7 +101,7 @@
         android:id="@+id/playerLose"
         android:layout_width="match_parent"
         android:visibility="gone"
-        android:layout_height="430dp">
+        android:layout_height="569dp">
 
         <Button
             android:id="@+id/replayButton2"
@@ -112,7 +113,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.7" />
+            app:layout_constraintVertical_bias="0.644" />
 
         <Button
             android:id="@+id/anotherChance"
@@ -123,7 +124,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/replayButton2" />
+            app:layout_constraintTop_toBottomOf="@+id/replayButton2"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView6"
@@ -136,6 +138,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.35" />
+
+        <Button
+            android:id="@+id/returnMenuButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/return_to_menu"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/anotherChance" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
