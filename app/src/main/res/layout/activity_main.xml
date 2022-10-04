@@ -9,11 +9,12 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="225dp"
+        android:layout_width="wrap_content"
         android:layout_height="59dp"
+        android:fontFamily="@font/pixelated_pusab"
         android:text="@string/minesweeper"
         android:textAlignment="center"
-        android:textSize="34sp"
+        android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,13 +26,14 @@
         android:layout_width="190dp"
         android:layout_height="85dp"
         android:layout_marginTop="80dp"
+        android:fontFamily="@font/pixelated_pusab"
+        android:onClick="goToMenu"
         android:text="@string/play"
-        android:textSize="54sp"
+        android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        android:onClick="goToMenu"
         tools:ignore="UsingOnClickInXml" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

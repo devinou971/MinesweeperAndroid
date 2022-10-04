@@ -7,12 +7,12 @@
     tools:context=".CustomGameActivity">
 
 
-
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="132dp"
+        android:fontFamily="@font/pixelated_pusab"
         android:text="@string/custom_game_mode"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,24 +24,26 @@
         android:id="@+id/rowsSlider"
         android:layout_width="200sp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="104dp"
         android:contentDescription="@string/number_of_rows_string"
         android:stepSize="1.0"
         android:valueFrom="5.0"
         android:valueTo="20.0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/pixelated_pusab"
         android:text="@string/number_of_rows_string"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/rowsSlider"
-        app:layout_constraintStart_toStartOf="@+id/rowsSlider" />
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.slider.Slider
         android:id="@+id/colsSlider"
@@ -61,9 +63,12 @@
         android:id="@+id/textViewX"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/pixelated_pusab"
         android:text="@string/number_of_cols_string"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/colsSlider"
-        app:layout_constraintStart_toStartOf="@+id/colsSlider" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.slider.Slider
         android:id="@+id/bombsSlider"
@@ -83,19 +88,22 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/pixelated_pusab"
         android:text="@string/amount_of_bombs_in_percent_string"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/bombsSlider"
-        app:layout_constraintStart_toStartOf="@+id/bombsSlider" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/startGameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
+        android:fontFamily="@font/pixelated_pusab"
         android:text="@string/start_game"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bombsSlider"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/bombsSlider" />
 </androidx.constraintlayout.widget.ConstraintLayout>
