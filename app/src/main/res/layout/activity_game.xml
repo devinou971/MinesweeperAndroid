@@ -64,7 +64,7 @@
 
         <Button
             android:id="@+id/returnMenuButton"
-            android:layout_width="241dp"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginTop="36dp"
             android:text="@string/return_to_menu"
@@ -89,7 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/you_won_string"
-            android:textSize="70sp"
+            android:textSize="60sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

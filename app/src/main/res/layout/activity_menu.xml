@@ -11,7 +11,7 @@
         android:layout_width="158dp"
         android:layout_height="55dp"
         android:layout_marginTop="128dp"
-        android:fontFamily="@font/pixelated_pusab"
+
         android:text="@string/easy"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +23,7 @@
         android:layout_width="158dp"
         android:layout_height="55dp"
         android:layout_marginTop="56dp"
-        android:fontFamily="@font/pixelated_pusab"
+
         android:text="@string/normal"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +35,7 @@
         android:layout_width="158dp"
         android:layout_height="55dp"
         android:layout_marginTop="56dp"
-        android:fontFamily="@font/pixelated_pusab"
+
         android:text="@string/hard"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +47,7 @@
         android:layout_width="158dp"
         android:layout_height="55dp"
         android:layout_marginTop="56dp"
-        android:fontFamily="@font/pixelated_pusab"
+
         android:text="@string/custom"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
