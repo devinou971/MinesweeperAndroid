@@ -18,23 +18,22 @@
             android:layout_width="150dp"
             android:layout_height="match_parent"
             android:fontFamily="@font/alarm_clock"
+            android:gravity="center"
             android:text="Number Here"
             android:textAlignment="center"
             android:textSize="34sp"
             app:layout_constraintStart_toStartOf="parent"
-            android:gravity="center"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/reloadBoard"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:contentDescription="@string/new_game"
             app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/nbFlagsRemaining"
+            app:layout_constraintStart_toEndOf="@+id/nbFlagsRemaining"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/reloadicon"
-            android:contentDescription="@string/new_game" />
+            app:srcCompat="@drawable/reloadicon" />
 
         <ImageView
             android:id="@+id/switchmode"
@@ -43,7 +42,19 @@
             android:layout_width="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="change mode image" />
+            android:contentDescription="@string/change_mode_image" />
+
+        <TextView
+            android:id="@+id/gameTimerView"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:fontFamily="@font/alarm_clock"
+            android:text="00:00"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toStartOf="@+id/switchmode"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Game View -->

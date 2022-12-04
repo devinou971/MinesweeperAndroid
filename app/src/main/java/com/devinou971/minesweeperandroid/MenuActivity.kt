@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 
 class MenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +27,15 @@ class MenuActivity : AppCompatActivity() {
         findViewById<Button>(R.id.customLevelButon).setOnClickListener {
             gotToGame(it)
         }
+
+        findViewById<ImageButton>(R.id.parameterButton).setOnClickListener {
+            goToParameter()
+        }
+    }
+
+    private fun goToParameter(){
+        val intent = Intent(this, ParametersActivity::class.java).apply {  }
+        startActivity(intent)
     }
 
     private fun gotToGame(view: View) {
@@ -42,6 +52,7 @@ class MenuActivity : AppCompatActivity() {
                     putExtra(NB_COLS, nbCols)
                     putExtra(NB_ROWS, nbRows)
                     putExtra(CELL_SIZE, cellSize)
+                    putExtra(DIFFICULTY, 0)
                 }
                 startActivity(intent)
             }
@@ -52,6 +63,7 @@ class MenuActivity : AppCompatActivity() {
                     putExtra(NB_COLS, nbCols)
                     putExtra(NB_ROWS, nbRows)
                     putExtra(CELL_SIZE, cellSize)
+                    putExtra(DIFFICULTY, 1)
                 }
                 startActivity(intent)
             }
@@ -62,6 +74,7 @@ class MenuActivity : AppCompatActivity() {
                     putExtra(NB_COLS, nbCols)
                     putExtra(NB_ROWS, nbRows)
                     putExtra(CELL_SIZE, cellSize)
+                    putExtra(DIFFICULTY, 2)
                 }
                 startActivity(intent)
             }
@@ -69,6 +82,7 @@ class MenuActivity : AppCompatActivity() {
                 val intent = Intent(this, CustomGameActivity::class.java).apply {
                     putExtra(NB_COLS, nbCols)
                     putExtra(NB_ROWS, nbRows)
+                    putExtra(DIFFICULTY, -1)
                 }
                 startActivity(intent)
             }

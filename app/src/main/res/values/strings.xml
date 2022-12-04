@@ -18,4 +18,9 @@
     <string name="you_won_string">You Won !</string>
     <string name="gameover">Gameover</string>
     <string name="another_chance">+ 1 Life</string>
+    <string name="parameter_icon">Parameter Icon</string>
+
+    <string name="game_timer">%1$s:%2$s</string>
+    <string name="timer">Game Timer</string>
+    <string name="change_mode_image">change mode image</string>
 </resources>

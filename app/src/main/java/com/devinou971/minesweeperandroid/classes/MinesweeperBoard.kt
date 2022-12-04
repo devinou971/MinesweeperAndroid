@@ -3,9 +3,7 @@ package com.devinou971.minesweeperandroid.classes
 import android.graphics.Point
 import com.devinou971.minesweeperandroid.extensions.countNeighbors
 import com.devinou971.minesweeperandroid.extensions.nextTo
-import java.sql.Time
 import java.time.Instant
-import java.util.*
 import kotlin.random.Random
 import kotlin.random.nextInt
 
@@ -14,7 +12,8 @@ class MinesweeperBoard(val nbRows : Int, val nbCols : Int, private val nbBombs :
     private set
     val grid = MutableList (nbRows) { MutableList (nbCols) {Slot()} }
     var gameOver = false
-    private var isFirstTouch = true
+    var isFirstTouch = true
+        private set
 
     fun reveal(position : Point){
         if(!gameOver)
