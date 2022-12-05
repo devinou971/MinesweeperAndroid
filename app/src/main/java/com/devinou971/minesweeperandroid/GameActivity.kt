@@ -27,8 +27,8 @@ import com.devinou971.minesweeperandroid.storageclasses.GameDataDAO
 
 class GameActivity : AppCompatActivity() {
 
-    var appDatabase: AppDatabase? = null
-    var gameDataDAO: GameDataDAO? = null
+    private var appDatabase: AppDatabase? = null
+    private var gameDataDAO: GameDataDAO? = null
 
     private lateinit var bombIcon : Bitmap
     private lateinit var flagIcon : Bitmap
@@ -88,12 +88,9 @@ class GameActivity : AppCompatActivity() {
 
     private var mode : Mode = Mode.REVEAL
 
-    // Timer Infos
+    // Timer Info
     private lateinit var serviceIntent : Intent
     private var time : Double = 0.0
-
-    // Data store infos
-    //
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -106,9 +103,10 @@ class GameActivity : AppCompatActivity() {
 
             if(cursor != null){
                 while (cursor.moveToNext()){
-                    val index = cursor.getColumnIndexOrThrow("time")
+                    val index = cursor.getColumnIndexOrThrow("game_type")
                     val lastName = cursor.getString(index)
                     println(lastName)
+                    println(cursor.columnNames)
                 }
             }
         }.start()
@@ -118,7 +116,7 @@ class GameActivity : AppCompatActivity() {
         nbRows = intent.getIntExtra(NB_ROWS, 10)
         nbCols = intent.getIntExtra(NB_COLS, 10)
         cellSize = intent.getIntExtra(CELL_SIZE, 100)
-        gameMode = intent.getIntExtra(DIFFICULTY, 0)
+        gameMode = intent.getIntExtra(DIFFICULTY, -1)
 
         bombIcon = BitmapFactory.decodeResource(resources, R.drawable.bombicon).scale(cellSize, cellSize, false)
         flagIcon = BitmapFactory.decodeResource(resources, R.drawable.flagicon).scale(cellSize, cellSize, false)
@@ -201,7 +199,7 @@ class GameActivity : AppCompatActivity() {
                 }.start()
             }
             else if (gameBoard.gameOver){
-                Toast.makeText(this, "Gameover", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Game Over", Toast.LENGTH_LONG).show()
                 gameView.visibility = GONE
                 playerLose.visibility = VISIBLE
 
@@ -329,19 +327,4 @@ class GameActivity : AppCompatActivity() {
         appDatabase = AppDatabase.getAppDataBase(this)
         gameDataDAO = appDatabase?.gameDataDAO()
     }
-
-    /*
-    private fun addNewEasyScore(score : Int){
-        // TODO add data to room database
-        val gameData = GameData(null, this.time.toInt(), this.gameMode)
-        if(this.gameDataDAO != null )
-            this.gameDataDAO?.insertGameData(gameData)
-    }
-
-    private fun addNewNormalScore(score : Int){
-    }
-
-    private fun addNewHardScore(score : Int){
-    }*/
-
 }

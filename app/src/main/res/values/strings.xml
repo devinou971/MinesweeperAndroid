@@ -23,4 +23,6 @@
     <string name="game_timer">%1$s:%2$s</string>
     <string name="timer">Game Timer</string>
     <string name="change_mode_image">change mode image</string>
+    <string name="no_highscore_yet">No highscore yet</string>
+    <string name="highscore">%1d min %2$d sec</string>
 </resources>

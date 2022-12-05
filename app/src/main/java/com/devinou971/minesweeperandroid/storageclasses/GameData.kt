@@ -14,4 +14,10 @@ class GameData (
 
     @ColumnInfo(name="game_type")
     val gameType: Int
-)
+
+
+) {
+    override fun toString(): String {
+        return "GameData(_id=$_id, time=$time, gameType=$gameType)"
+    }
+}

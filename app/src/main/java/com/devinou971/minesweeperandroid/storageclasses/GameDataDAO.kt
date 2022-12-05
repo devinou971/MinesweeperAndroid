@@ -25,4 +25,7 @@ interface GameDataDAO {
 
     @Query("SELECT * FROM GameData WHERE _id=:id")
     fun getOneGameData(id: Int) : GameData
+
+    @Query("SELECT * FROM GameData WHERE game_type=:difficulty ORDER BY time ASC LIMIT 1")
+    fun getBestTimeForDifficulty(difficulty: Int) : GameData
 }

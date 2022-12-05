@@ -6,8 +6,15 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
+import com.devinou971.minesweeperandroid.storageclasses.AppDatabase
+import com.devinou971.minesweeperandroid.storageclasses.GameDataDAO
 
 class MenuActivity : AppCompatActivity() {
+
+    private var appDatabase: AppDatabase? = null
+    private var gameDataDAO: GameDataDAO? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
@@ -31,6 +38,28 @@ class MenuActivity : AppCompatActivity() {
         findViewById<ImageButton>(R.id.parameterButton).setOnClickListener {
             goToParameter()
         }
+
+
+        val highscoreViews = mutableListOf<TextView>()
+        highscoreViews.add(findViewById(R.id.bestScoreEasy))
+        highscoreViews.add(findViewById(R.id.bestScoreNormal))
+        highscoreViews.add(findViewById(R.id.bestScoreHard))
+
+        Thread{
+            accessDatabase()
+            for(i in 0..highscoreViews.size){
+                val bestScore = gameDataDAO?.getBestTimeForDifficulty(i)
+                if(bestScore != null){
+                    val minutes = bestScore.time / 60
+                    val seconds = bestScore.time - minutes * 60
+
+                    runOnUiThread{
+                        highscoreViews[i].text = resources.getString(R.string.highscore, minutes, seconds)
+                    }
+                }
+            }
+
+        }.start()
     }
 
     private fun goToParameter(){
@@ -86,5 +115,10 @@ class MenuActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+    }
+
+    private fun accessDatabase(){
+        appDatabase = AppDatabase.getAppDataBase(this)
+        gameDataDAO = appDatabase?.gameDataDAO()
     }
 }
