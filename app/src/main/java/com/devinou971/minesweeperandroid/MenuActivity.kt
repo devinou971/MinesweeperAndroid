@@ -82,7 +82,6 @@ class MenuActivity : AppCompatActivity() {
                 val intent = Intent(this, CustomGameActivity::class.java).apply {
                     putExtra(NB_COLS, nbCols)
                     putExtra(NB_ROWS, nbRows)
-                    putExtra(DIFFICULTY, -1)
                 }
                 startActivity(intent)
             }

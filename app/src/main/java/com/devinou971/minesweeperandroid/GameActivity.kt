@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.*
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.SurfaceView
@@ -16,14 +15,20 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.graphics.scale
 import com.devinou971.minesweeperandroid.classes.MinesweeperBoard
 import com.devinou971.minesweeperandroid.services.TimerService
-import kotlinx.coroutines.runBlocking
+import com.devinou971.minesweeperandroid.storageclasses.AppDatabase
+import com.devinou971.minesweeperandroid.storageclasses.GameData
+import com.devinou971.minesweeperandroid.storageclasses.GameDataDAO
 
 
 class GameActivity : AppCompatActivity() {
+
+    var appDatabase: AppDatabase? = null
+    var gameDataDAO: GameDataDAO? = null
 
     private lateinit var bombIcon : Bitmap
     private lateinit var flagIcon : Bitmap
@@ -85,7 +90,7 @@ class GameActivity : AppCompatActivity() {
 
     // Timer Infos
     private lateinit var serviceIntent : Intent
-    private var time = 0.0
+    private var time : Double = 0.0
 
     // Data store infos
     //
@@ -94,6 +99,19 @@ class GameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+
+        Thread {
+            accessDatabase()
+            val cursor = this.gameDataDAO?.getAllGameData()
+
+            if(cursor != null){
+                while (cursor.moveToNext()){
+                    val index = cursor.getColumnIndexOrThrow("time")
+                    val lastName = cursor.getString(index)
+                    println(lastName)
+                }
+            }
+        }.start()
 
         // --------- GETTING THE DIFFERENT VALUES SENT FROM OTHER ACTIVITIES ---------
         nbBombs = intent.getIntExtra(NB_BOMBS, 10)
@@ -172,6 +190,15 @@ class GameActivity : AppCompatActivity() {
                 playerWin.visibility = VISIBLE
 
                 stopTimer()
+
+                Thread {
+                    accessDatabase()
+                    val gameData = GameData(null, this.time.toInt(), this.gameMode)
+                    if(this.gameDataDAO != null )
+                        this.gameDataDAO?.insertGameData(gameData)
+
+
+                }.start()
             }
             else if (gameBoard.gameOver){
                 Toast.makeText(this, "Gameover", Toast.LENGTH_LONG).show()
@@ -213,14 +240,14 @@ class GameActivity : AppCompatActivity() {
 
     private fun goToMenu(){
         quit = true
-        if(!gameBoard.gameOver){
+        /*if(!gameBoard.gameOver){
             when(gameMode){
                 0 -> runBlocking { addNewEasyScore(time.toInt()) }
                 1 -> runBlocking { addNewNormalScore(time.toInt()) }
                 2 -> runBlocking { addNewHardScore(time.toInt()) }
                 else -> runBlocking { addNewEasyScore(time.toInt()) }
             }
-        }
+        }*/
         val intent = Intent(this, MenuActivity::class.java)
         startActivity(intent)
     }
@@ -298,16 +325,23 @@ class GameActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
+    private fun accessDatabase(){
+        appDatabase = AppDatabase.getAppDataBase(this)
+        gameDataDAO = appDatabase?.gameDataDAO()
+    }
 
-
-    private suspend fun addNewEasyScore(score : Int){
+    /*
+    private fun addNewEasyScore(score : Int){
         // TODO add data to room database
+        val gameData = GameData(null, this.time.toInt(), this.gameMode)
+        if(this.gameDataDAO != null )
+            this.gameDataDAO?.insertGameData(gameData)
     }
 
-    private suspend fun addNewNormalScore(score : Int){
+    private fun addNewNormalScore(score : Int){
     }
 
-    private suspend fun addNewHardScore(score : Int){
-    }
+    private fun addNewHardScore(score : Int){
+    }*/
 
 }
